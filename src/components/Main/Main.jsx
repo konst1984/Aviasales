@@ -29,7 +29,7 @@ const Main = () => {
       });
   }, []);
 
-  const sortInNowTime = () => {
+  const sortUponLoading = () => {
     if (tabs['price']) {
       return dispatch(sortTicketsPrice());
     } else if (tabs['duration']) {
@@ -53,7 +53,7 @@ const Main = () => {
             }
             const arrayTickets = ticketsPack.tickets.map(ticketGenerator);
             dispatch(addAllTickets(arrayTickets));
-            sortInNowTime();
+            sortUponLoading();
             setError(false);
           }
         } catch (e) {
@@ -63,7 +63,6 @@ const Main = () => {
       };
       subscribe();
     }
-    // console.log(tickets);
   }, [searchId, tickets, loading, error]);
 
   return (

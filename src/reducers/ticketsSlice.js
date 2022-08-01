@@ -17,7 +17,6 @@ const ticketsSlice = createSlice({
       two: true,
       three: true,
     },
-    // onAllFilters: true,
     arrayFilter: [0, 1, 2, 3],
   },
   reducers: {
@@ -56,7 +55,6 @@ const ticketsSlice = createSlice({
       state.countTicketsOnPage += 5;
     },
     switchAllFilter(state) {
-      // state.onAllFilters = !state.onAllFilters;
       state.filterTransfer.all = !state.filterTransfer.all;
 
       if (state.filterTransfer.all) {
