@@ -1,0 +1,66 @@
+.filter {
+  padding: 20px 0 10px;
+  height: 252px;
+  display: grid;
+  justify-items: flex-start;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.title {
+  margin: 0;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-left: 50px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  height: 40px;
+  color: #4a4a4a;
+  &:hover {
+    background: #f1fcff;
+  }
+}
+
+#root {
+  height: 100%;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 20px;
+  border: 1px solid #2196f3;
+  border-radius: 2px;
+}
+
+.input {
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.input:checked + span.checkbox {
+  background: url('../../assests/images/Shape.svg') center center / 12px 8px no-repeat;
+}
+
+@media (max-width: 540px) {
+  .filter {
+    grid-column: 1/3;
+  }
+}
