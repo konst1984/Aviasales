@@ -2,7 +2,7 @@ import classes from './App.module.scss';
 import Main from './components/Main';
 import Logo from './logo.png';
 
-function App() {
+const App = () => {
   return (
     <div className={classes.App}>
       <div className={classes.logo}>
@@ -11,6 +11,6 @@ function App() {
       <Main />
     </div>
   );
-}
+};
 
 export default App;

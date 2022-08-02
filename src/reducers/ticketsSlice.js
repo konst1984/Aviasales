@@ -1,14 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { ticketGenerator } from '../helpers';
+
+export const fetchSearchId = createAsyncThunk(
+  'tickets/fetchSearchId',
+  async function (_, { rejectWithValue }) {
+    try {
+      const res = await fetch('https://aviasales-test-api.kata.academy/search');
+      if (!res.ok) {
+        throw new Error('Could not fetch key to API!');
+      }
+      return await res.json();
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchTickets = createAsyncThunk(
+  'todos/fetchTodos',
+  async function requestData(key, { rejectWithValue }) {
+    try {
+      const res = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${key}`);
+      if (!res.ok) {
+        throw new Error(`${res.status}`);
+      }
+      return await res.json();
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
 const ticketsSlice = createSlice({
   name: 'tickets',
   initialState: {
     tickets: [],
     countTicketsOnPage: 5,
+    loading: false,
+    isData: false,
     tabs: {
       price: true,
       duration: false,
-      optima: false,
+      optimum: false,
     },
     filterTransfer: {
       all: true,
@@ -18,11 +51,12 @@ const ticketsSlice = createSlice({
       three: true,
     },
     arrayFilter: [0, 1, 2, 3],
+    errorId: false,
+    errorTickets: false,
+    searchId: null,
+    statusError: 0,
   },
   reducers: {
-    addAllTickets(state, action) {
-      state.tickets = [...state.tickets, ...action.payload];
-    },
     allTabsFalse(state, action) {
       if (state.tabs[action.payload] === false) {
         Object.keys(state.tabs)
@@ -31,25 +65,8 @@ const ticketsSlice = createSlice({
         state.tabs[action.payload] = true;
       }
     },
-    sortTicketsPrice(state) {
-      if (state.tabs.price) {
-        state.tickets = state.tickets.sort((prev, next) => prev.price - next.price);
-      }
-    },
-    sortTicketsDuration(state) {
-      if (state.tabs.duration) {
-        state.tickets = state.tickets.sort(
-          (prev, next) => prev.comeDuration + prev.backDuration - (next.comeDuration + next.backDuration)
-        );
-      }
-    },
-    sortTicketsOptimum(state) {
-      const sumTicketParam = (el) => {
-        return el.price + el.comeDuration + el.backDuration;
-      };
-      if (state.tabs.optima) {
-        state.tickets = state.tickets.sort((prev, next) => sumTicketParam(prev) - sumTicketParam(next));
-      }
+    sortTicketsTabs(state, action) {
+      state.tickets = action.payload;
     },
     addCountTickets(state) {
       state.countTicketsOnPage += 5;
@@ -85,16 +102,39 @@ const ticketsSlice = createSlice({
         state.filterTransfer.one;
     },
   },
+  extraReducers: {
+    [fetchSearchId.pending]: (state) => {
+      state.loading = true;
+      state.errorId = false;
+    },
+    [fetchSearchId.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.searchId = action.payload.searchId;
+    },
+    [fetchSearchId.rejected]: (state) => {
+      state.loading = false;
+      state.errorId = true;
+    },
+    [fetchTickets.pending]: (state) => {
+      state.loading = true;
+      state.errorTickets = false;
+    },
+    [fetchTickets.fulfilled]: (state, action) => {
+      state.tickets = [...state.tickets, ...action.payload.tickets.map(ticketGenerator)];
+      state.isData = action.payload.stop;
+      state.loading = !action.payload.stop;
+    },
+    [fetchTickets.rejected]: (state, action) => {
+      if (action.payload === '500') {
+        state.statusError += 1;
+      } else {
+        state.loading = false;
+        state.errorTickets = true;
+      }
+    },
+  },
 });
 
-export const {
-  sortTicketsPrice,
-  sortTicketsDuration,
-  addAllTickets,
-  addCountTickets,
-  sortTicketsOptimum,
-  allTabsFalse,
-  switchAllFilter,
-  switchFilter,
-} = ticketsSlice.actions;
+export const { addCountTickets, allTabsFalse, sortTicketsTabs, switchAllFilter, switchFilter } =
+  ticketsSlice.actions;
 export default ticketsSlice.reducer;

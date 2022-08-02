@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { switchFilter, switchAllFilter } from '../../reducers/ticketsSlice';
 import Checkbox from './Checkbox';
 import classes from './Filter.module.scss';
 
-const Filter = () => {
+const Filter = memo(() => {
   const dispatch = useDispatch();
   let { all, nonStop, one, two, three } = useSelector((state) => state.tickets.filterTransfer);
 
@@ -37,6 +37,6 @@ const Filter = () => {
       />
     </div>
   );
-};
+});
 
 export default Filter;

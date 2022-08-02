@@ -1,6 +1,6 @@
 import { addMinutes } from 'date-fns';
 
-const transformTicket = () => {
+const ticketGenerator = (function transformTicket() {
   let idTick = 1;
   return function (ticket) {
     return {
@@ -19,9 +19,7 @@ const transformTicket = () => {
       timeBackTransfer: transferTime(ticket.segments[1].date, ticket.segments[1].duration),
     };
   };
-};
-
-const ticketGenerator = transformTicket();
+})();
 
 const transformTime = (time) => {
   const hours = transformString(parseInt(String(time / 60)));
@@ -48,4 +46,41 @@ const filteredElem = (elem, commonParam, arrayValues, param) => {
   return true;
 };
 
-export { ticketGenerator, transformTime, filteredElem };
+const countTransfer = (value) => {
+  switch (value) {
+    case 0:
+      return 'без пересадок';
+    case 1:
+      return '1 пересадка';
+    case 2:
+      return '2 пересадки';
+    case 3:
+      return '3 пересадки';
+    default:
+      return '';
+  }
+};
+
+const sortUponLoading = (var1, var2, var3, arr) => {
+  if (arr) {
+    const arrayForSort = [...arr];
+    if (var1) {
+      return arrayForSort.sort((prev, next) => prev.price - next.price);
+    } else if (var2) {
+      return arrayForSort.sort(
+        (prev, next) =>
+          prev.comeDuration + prev.backDuration - (next.comeDuration + next.backDuration)
+      );
+    } else if (var3) {
+      return arrayForSort.sort(
+        (prev, next) =>
+          prev.price +
+          prev.comeDuration +
+          prev.backDuration -
+          (next.price + next.comeDuration + next.backDuration)
+      );
+    }
+  }
+};
+
+export { ticketGenerator, transformTime, filteredElem, countTransfer, sortUponLoading };

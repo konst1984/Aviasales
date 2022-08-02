@@ -1,9 +1,10 @@
 .main {
   display: grid;
   grid-template-columns: minmax(200px, 232px) minmax(300px, 502px);
+  grid-template-rows: 50px 165px 1fr;
+  height: fit-content;
   gap: 20px;
   width: 100%;
-  grid-template-rows: 50px 165px 1fr;
 }
 .alert-error {
   grid-column: 2/3;

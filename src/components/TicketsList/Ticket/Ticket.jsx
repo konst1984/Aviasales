@@ -1,46 +1,11 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { transformTime } from '../../../helpers';
+import { transformTime, countTransfer } from '../../../helpers';
 
 import classes from './Ticket.module.scss';
-
-export const countTransfer = (count) => {
-  switch (count) {
-    case 0:
-      return 'без пересадок';
-    case 1:
-      return '1 пересадка';
-    case 2:
-      return '2 пересадки';
-    case 3:
-      return '3 пересадки';
-    default:
-      return '';
-  }
-};
-
-const TicketInfo = ({ origin, destination, duration, stops, stopsLength, arrivalTime }) => {
-  return (
-    <div className={classes['ticket__main']}>
-      <div className={classes['ticket__section']}>
-        <span className={classes['ticket__column-name']}>
-          {origin}-{destination}
-        </span>
-        <span className={classes['ticket__column-info']}>{arrivalTime}</span>
-      </div>
-      <div className={classes['ticket__section']}>
-        <span className={classes['ticket__column-name']}>В пути</span>
-        <span className={classes['ticket__column-info']}>{duration}</span>
-      </div>
-      <div className={classes['ticket__section']}>
-        <span className={classes['ticket__column-name']}>{stopsLength}</span>
-        <span className={classes['ticket__column-info']}>{stops.join(', ')}</span>
-      </div>
-    </div>
-  );
-};
+import TicketInfo from './TicketInfo/TicketInfo';
 
 const Ticket = ({
   timeBackTransfer,
@@ -82,15 +47,6 @@ const Ticket = ({
       />
     </div>
   );
-};
-
-TicketInfo.propTypes = {
-  origin: PropTypes.string,
-  destination: PropTypes.string,
-  duration: PropTypes.string,
-  stops: PropTypes.array,
-  stopsLength: PropTypes.string,
-  arrivalTime: PropTypes.string,
 };
 
 Ticket.propTypes = {

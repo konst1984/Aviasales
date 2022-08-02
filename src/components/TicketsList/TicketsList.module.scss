@@ -4,21 +4,21 @@
   grid-column: 2/3;
   grid-row: 2/4;
   position: relative;
-}
-.preloader {
-  display: flex;
-  position: absolute;
-  top: -15px;
-  justify-content: center;
-  width: 100%;
-  height: 11px;
-}
-.alert {
-  text-align: center;
-  font-size: 24px;
-  border-radius: 10px;
-  border: 1px solid #dfe5ec;
-  box-shadow: inset 0 0 10px #dfe5ec;
+  .preloader {
+    display: flex;
+    position: absolute;
+    top: -15px;
+    justify-content: center;
+    width: 100%;
+    height: 11px;
+  }
+  div[data-show='true'] {
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px;
+    border: 1px solid #dfe5ec;
+    box-shadow: inset 0 0 10px #dfe5ec;
+  }
 }
 
 @media (max-width: 750px) {
