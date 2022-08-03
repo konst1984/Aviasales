@@ -20,7 +20,7 @@ const Main = () => {
 
   useEffect(() => {
     if (searchId && !isData) {
-      dispatch(fetchTickets(searchId));
+      dispatch(fetchTickets());
     }
   }, [dispatch, tickets, isData, statusError, searchId]);
 
