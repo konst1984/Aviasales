@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { transformTime, countTransfer } from '../../../helpers';
 
 import classes from './Ticket.module.scss';
-import TicketInfo from './TicketInfo/TicketInfo';
+import TicketInfo from './TicketInfo';
 
 const Ticket = ({
   timeBackTransfer,

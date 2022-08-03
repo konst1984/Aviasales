@@ -1,7 +1,8 @@
 import React from 'react';
 
-import classes from '../Ticket.module.scss';
 import PropTypes from 'prop-types';
+
+import classes from '../Ticket.module.scss';
 
 const TicketInfo = ({ origin, destination, duration, stops, stopsLength, arrivalTime }) => {
   return (
