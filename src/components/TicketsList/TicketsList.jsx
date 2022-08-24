@@ -1,12 +1,10 @@
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { filteredElem, sortUponLoading } from '../../helpers';
 import Button from '../Button';
+import FilteredTickets from '../FilteredTickets';
+import Preloader from '../Preloader';
 
-import 'antd/dist/antd.min.css';
-import FilteredTickets from './FilteredTickets';
-import Preloader from './Preloader';
 import classes from './TicketsList.module.scss';
 
 const TicketsList = () => {
@@ -18,7 +16,7 @@ const TicketsList = () => {
   const sortTickets = sortUponLoading(price, duration, optimum, tickets);
 
   let filteredTickets = sortTickets.filter((ticket) =>
-    filteredElem(ticket, all, arrayFilter, 'comeStops')
+    filteredElem(ticket, all, arrayFilter, 'comeStops', 'backStops')
   );
 
   return (

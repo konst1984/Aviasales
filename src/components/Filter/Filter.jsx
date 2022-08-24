@@ -3,8 +3,8 @@ import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { switchFilter, switchAllFilter } from '../../reducers/ticketsSlice';
+import Checkbox from '../Checkbox';
 
-import Checkbox from './Checkbox';
 import classes from './Filter.module.scss';
 
 const Filter = memo(() => {

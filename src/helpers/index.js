@@ -39,9 +39,9 @@ const transferTime = (date, min) => {
   return `${hoursLeave}:${minutesLeave} - ${hoursArrival}:${minutesArrival}`;
 };
 
-const filteredElem = (elem, commonParam, arrayValues, param) => {
+const filteredElem = (elem, commonParam, arrayValues, param1, param2) => {
   if (!commonParam) {
-    return arrayValues.includes(elem[param].length);
+    return arrayValues.includes(elem[param1].length || elem[param2].length);
   }
   return true;
 };

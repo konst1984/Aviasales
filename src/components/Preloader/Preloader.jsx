@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import preloader from '../../../assests/images/745.gif';
-import classes from '../TicketsList.module.scss';
+import preloader from '../../assests/images/745.gif';
+import classes from '../TicketsList/TicketsList.module.scss';
 
 const Preloader = () => {
   const loading = useSelector((state) => state.tickets.loading);

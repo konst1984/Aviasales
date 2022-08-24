@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import 'antd/dist/antd.min.css';
 
 import { fetchSearchId, fetchTickets } from '../../reducers/ticketsSlice';
 import Filter from '../Filter';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import classes from '../Tabs.module.scss';
+import classes from '../Tabs/Tabs.module.scss';
 
 const Tab = ({ name, eventClick, text }) => {
   return (

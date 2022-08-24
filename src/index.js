@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom/client';
+import 'antd/dist/antd.min.css';
 import './index.module.scss';
 import { Provider } from 'react-redux';
 

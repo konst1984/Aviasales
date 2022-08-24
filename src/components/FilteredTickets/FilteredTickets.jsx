@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import Ticket from '../Ticket';
-import classes from '../TicketsList.module.scss';
+import classes from '../TicketsList/TicketsList.module.scss';
 
 const FilteredTickets = ({ filteredTickets }) => {
   const { loading, errorId, errorTickets } = useSelector((state) => state.tickets);

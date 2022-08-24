@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from '../Filter.module.scss';
+import classes from '../Filter/Filter.module.scss';
 
 const Checkbox = ({ text, eventChange, check }) => {
   return (

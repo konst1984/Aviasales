@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { sortUponLoading } from '../../helpers';
 import { allTabsFalse, sortTicketsTabs } from '../../reducers/ticketsSlice';
+import Tab from '../Tab';
 
-import Tab from './Tab';
 import classes from './Tabs.module.scss';
 
 const Tabs = () => {
