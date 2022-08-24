@@ -2,4 +2,4 @@
 
  using api: https://aviasales-test-api.kata.academy/
 
-project link: https://aviasales-no4i6sg1y-konst1984.vercel.app/
+project link: https://aviasales-eaqif1p5t-konst1984.vercel.app/
